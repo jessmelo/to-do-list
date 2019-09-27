@@ -22,8 +22,17 @@
             box-sizing: border-box;         /* Opera/IE 8+ */
             border: 2px dashed #000000;
         }
+        #buttons {
+            text-align: center;
+        }
         h1 {
             text-align: center;
+        }
+        h2{
+            margin-bottom: 10px;
+        }
+        .linethrough{
+            text-decoration: line-through;
         }
     </style>
 </head>
@@ -31,15 +40,14 @@
 <body>
 <div class="container">
     <h1>To Do List</h1>
-
+    <ol id="list">
+    </ol>    
     <h2>Commands:</h2>
-
-    <ul>
-        <li>"new" - to add a new task</li>
-        <li>"list" - to view all tasks</li>
-        <li>"delete" - remove a task from the list</li>
-        <li>"quit" - to quit the app</li>
-    </ul>
+    <div id="buttons">
+        <button id="new">NEW TASK</button>
+        <button id="delete">DELETE A TASK</button>
+        <button id="clear">CLEAR THE LIST</button>
+    </div>   
 </div>
 </body>
 
