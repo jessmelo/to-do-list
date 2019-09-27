@@ -1,41 +1,50 @@
 window.setTimeout(function(){
-var list = [];
+    console.log("TO DO LIST APP");
 
-console.log("TO DO LIST APP");
+    var todolist = [];
 
-function listItems(){
-    console.log("YOUR TO DO LIST:");
-    list.forEach(function(item, i){
-        console.log(i+1 + " - " + item);
-    });
-}
+    var list =  document.getElementById("list");
 
-function newItem(){
-    var newTask = prompt("Enter your new task:");
-    list.push(newTask);
-    console.log("\""+ newTask + "\" added to the list." );
-}
+    list.item = document.getElementsByClassName("task");
 
-function deleteItem(){
-    var index = prompt("What item do you want to delete?");
-    console.log("\""+ list[index-1] + "\" deleted from the list." );
-    list.splice(index-1, 1);  // deletes one item
-}
-
-var input = prompt("What would you like to do?");
-
-while (input !== "quit"){
-    if (input === "list"){
-       listItems();
-    } else if (input === "new"){
-        newItem();
-    } else if (input === "delete"){
-        deleteItem();
+   function loopList() {
+       list.textContent = " ";
+       for(var i = 0; i<todolist.length; i++){
+            list.insertAdjacentHTML('beforeend', '<li class="task"></li>')
+            list.item[i].textContent = todolist[i];
+       }
     }
 
-    var input = prompt("What would you like to do?");
-}
- 
-console.log("You quit the app!");
+    var newButton = document.getElementById("new");
+
+    newButton.addEventListener("click", newTask);
+
+    function newTask(){
+        var newItem = prompt("What do you want to do?");
+        if(newItem != null){
+            todolist.push(newItem);
+            list.insertAdjacentHTML('beforeend', '<li class="task"></li>')
+            list.item[list.item.length-1].textContent = todolist[todolist.length-1];
+        }
+    }
+
+    var deleteButton = document.getElementById("delete");
+
+    deleteButton.addEventListener("click", deleteTask);
+
+    function deleteTask(){
+        var itemIndex = prompt("What task do you want to delete?");
+        if(itemIndex != null){
+            todolist.splice(itemIndex-1, 1);
+            loopList();
+        }
+    }
+
+    var clearList = document.getElementById("clear");
+
+    clearList.addEventListener("click", function(){
+        todolist.splice(0, todolist.length);
+        loopList();
+    });
 
 }, 500);
